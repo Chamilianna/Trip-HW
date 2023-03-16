@@ -2676,6 +2676,27 @@ MonoBehaviour:
   shockWave: {fileID: 0}
   healthBar: {fileID: 2079082515}
   playerPrefab: {fileID: 273891810}
+  level1:
+    m_Handle: 0
+  level2:
+    m_Handle: 0
+--- !u!114 &273891838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273891810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a7fc0d3dffc18489ecec41113ca018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  numLives: 3
+  healthSlider: {fileID: 2079082515}
+  screenFade: {fileID: 1641196389}
 --- !u!1 &275045019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 89eed1a92c83c45c488171c7057b5c6f,
@@ -4381,7 +4402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472090955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 514.4466, y: -22.9, z: 123.61}
+  m_LocalPosition: {x: 514.4466, y: -11.3, z: 123.61}
   m_LocalScale: {x: 50.651173, y: 50.651173, z: 50.651173}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4402,8 +4423,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numLevels: 2
   shockWave: {fileID: 0}
-  healthBar: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  healthBar: {fileID: 2079082515}
+  playerPrefab: {fileID: 273891810}
+  level1:
+    m_Handle: 0
+  level2:
+    m_Handle: 0
 --- !u!1001 &486717100
 PrefabInstance:
   m_ObjectHideFlags: 0

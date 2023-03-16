@@ -36,18 +36,18 @@ public class Respawn : MonoBehaviour
         else if (other.CompareTag("Goal"))
         {
             GetComponent<Animator>().Play("WIN00");
-            Destroy(other.gameObject, 0.25f);
+            Destroy(other.gameObject, 3.5f);
             levelNumber++;
             if (levelNumber <= numLevels)
             {
-                if (levelNumber == 2)
+                if (levelNumber == 1)
                 {
                     SpawnPlayerInLevel2();
                     Destroy(gameObject);
                 }
-                else
+                else if (levelNumber == 2)
                 {
-                    Invoke("LoadNextLevel", 3.5f);
+                    LoadNextLevel();
                 }
             }
             else
@@ -59,13 +59,29 @@ public class Respawn : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        GetComponent<CharacterController>().enabled = false;
-        transform.position = startPos;
-        transform.rotation = startRot;
-        CollectHealth.lives--;
-        CollectHealth.health = 0;
-        healthBar.value = CollectHealth.health;
-        StartCoroutine(PlayLoseAnimation());
+        if (CollectHealth.lives > 0)
+        {
+            CollectHealth.lives--;
+            CollectHealth.health = 0;
+            healthBar.value = CollectHealth.health;
+            StartCoroutine(PlayLoseAnimation());
+
+            if (SceneManager.GetActiveScene().name == "Level1")
+            {
+                GetComponent<CharacterController>().enabled = false;
+                transform.position = startPos;
+                transform.rotation = startRot;
+                GetComponent<CharacterController>().enabled = true;
+            }
+            else if (SceneManager.GetActiveScene().name == "Level2")
+            {
+                SceneManager.LoadScene("Level1");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("Level1");
+        }
     }
 
     private void SetStartPosition(Vector3 position, Quaternion rotation)
@@ -76,7 +92,7 @@ public class Respawn : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene($"Level{2}");
+        SceneManager.LoadScene("Level2");
     }
 
     private void SpawnPlayerInLevel2()
@@ -91,6 +107,5 @@ public class Respawn : MonoBehaviour
         yield return new WaitForSeconds(3);
         CollectHealth.health = 100;
         healthBar.value = CollectHealth.health;
-        GetComponent<CharacterController>().enabled = true;
     }
 }
